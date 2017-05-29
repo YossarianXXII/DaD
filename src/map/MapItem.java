@@ -8,7 +8,9 @@ package map;
 import java.io.File;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import main.GlobalState;
 
@@ -18,42 +20,62 @@ import main.GlobalState;
  * 
  * 
  */
-public class MapItem {
+public class MapItem extends Pane{
     Canvas canvas;
     Image image;
-    double x;
-    double y;
+//    double x;
+//    double y;
     
     int type;
-
+    boolean isSelected;
     MapItem() {
         
     }
 
     MapItem(double x, double y, Pane pane) {
-        this.x = x; this.y = y;
+        this.setLayoutX(x-32);  this.setLayoutY(y-32);
         Canvas c = new Canvas();
-        c.setOnMousePressed(e->{
-            if(GlobalState.isDeleteItemRadioSelected){
-               pane.getChildren().remove(c);
+        pane.getChildren().add(this); 
+        this.getChildren().add(c);
+        
+        c.setOnMousePressed((MouseEvent e) -> {
+            if (((RadioButton)GlobalState.selectedTool).getId().equals("deleteItemRadio")) {
+                pane.getChildren().remove(MapItem.this);
+            } else if(((RadioButton)GlobalState.selectedTool).getId().equals("selectItemRadio")){
+                if(!isSelected){
+                    c.setStyle("-fx-effect: innershadow(gaussian, #039ed3, 10, 1.0, 0, 0);");
+                    isSelected=true;
+                }else
+                {
+                    c.setStyle("");
+                    isSelected=false;
+                }
+                
             }
         });
+//        c.setOnMouseDragged((MouseEvent m)->{
+////            System.out.println(  ((Canvas)(m.getSource()))   );
+//                    
+//                    c.setLayoutY(m.getScreenY()-c.getScene().getWindow().getY());
+//                });
         c.setHeight(64);
         c.setWidth(64);
         
-        c.setLayoutX(x-32);
-        c.setLayoutY(y-32);
+//        c.setLayoutX(x-32);
+//        c.setLayoutY(y-32);
         GraphicsContext gc = c.getGraphicsContext2D();
         System.out.println(x + "x" + y);
         File f = new File("01.png");
-        Image i = new Image("file:"+f.getName());
+        image = new Image("file:"+f.getName());
         
-        gc.drawImage(i, 0, 0, 64, 64);
-//        gc.drawImage(i, 0, 0);
+        gc.drawImage(image, 0, 0, 64, 64);
+
         
         
-        pane.getChildren().add(c); 
+        
     }
+    
+   
     
     
     

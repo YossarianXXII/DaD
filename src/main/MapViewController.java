@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
@@ -17,9 +19,7 @@ public class MapViewController {
 
     @FXML
     public void initialize(){
-        newItemRadio.setOnAction(e->{
-            
-        });
+        GlobalState.selectedTool = itemRadio.getSelectedToggle();
     }
     
     
@@ -30,8 +30,10 @@ public class MapViewController {
 
     @FXML
     void onMousePressed(MouseEvent event) {
-       if(newItemRadio.isSelected()){
+        System.out.println(GlobalState.selectedTool);    
+       if( GlobalState.selectedTool.equals(newItemRadio) ){
            MapItemFactory.getNew(event.getX(), event.getY(), mainPane);
+           
        }
        if(moveItemRadio.isSelected()){
            // select Item and move it
@@ -39,7 +41,7 @@ public class MapViewController {
        if(deleteItemRadio.isSelected()){
            // delete Item under cursor
        }
-        
+       
         
     }
 
@@ -50,22 +52,14 @@ public class MapViewController {
     
     @FXML
     void onRadioButton(ActionEvent event){
-        if(newItemRadio.isSelected()){
-            GlobalState.isDeleteItemRadioSelected = false;
-            GlobalState.isNewItemRadioSelected = true;
-            GlobalState.isMoveItemRadioSelected = false;
-        }
-        if(moveItemRadio.isSelected()){
-            GlobalState.isDeleteItemRadioSelected = false;
-            GlobalState.isNewItemRadioSelected = false;
-            GlobalState.isMoveItemRadioSelected = true;
-        }
-        if(deleteItemRadio.isSelected()){
-            GlobalState.isDeleteItemRadioSelected = true;
-            GlobalState.isNewItemRadioSelected = false;
-            GlobalState.isMoveItemRadioSelected = false;
-            
-        }
+//        System.out.println("Event");
+//        System.out.println(  ((RadioButton)(event.getSource())).getId() );
+            System.out.println(itemRadio.getSelectedToggle().toString());    
+            GlobalState.selectedTool = itemRadio.getSelectedToggle();
+//        System.out.println(selectedToggle.getId());
+//        RadioButton name = (RadioButton)event.getSource();
+//        System.out.println(name.getId());
+        
     }
 
     @FXML
@@ -80,5 +74,7 @@ public class MapViewController {
     @FXML private RadioButton newItemRadio;
     @FXML private RadioButton moveItemRadio;
     @FXML private RadioButton deleteItemRadio;
+    @FXML private ToggleButton selectItemRadio;
+    @FXML private ToggleGroup itemRadio;
 
 }

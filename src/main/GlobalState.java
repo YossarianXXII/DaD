@@ -5,7 +5,7 @@
  */
 package main;
 
-import javafx.beans.property.BooleanProperty;
+import javafx.scene.control.Toggle;
 
 /**
  *
@@ -18,8 +18,12 @@ public  class GlobalState {
         return this.g;
     }
     
-    public static boolean isNewItemRadioSelected;
-    public static boolean isMoveItemRadioSelected;
-    public static boolean isDeleteItemRadioSelected;
     
+    public static Toggle selectedTool;
+    
+    
+    
+    public void printRadioState(){
+       
+    }
 }
