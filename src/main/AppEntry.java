@@ -25,6 +25,7 @@ public class AppEntry extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MapView.fxml"));
         Scene scene = new Scene(root);
+        scene.getStylesheets().add("styles.css");
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();

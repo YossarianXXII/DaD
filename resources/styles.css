@@ -1,0 +1,72 @@
+.font-awesome-radio {
+   /* -fx-label-padding: 0.0em 0.0em 0.0em 0.416667em;  0 0 0 5 */
+    /*-fx-text-fill: -fx-text-background-color;*/
+    -icons-color: green;
+}
+
+.font-awesome-radio:focused {
+    -fx-color: -fx-focused-base;
+}
+
+.font-awesome-radio:hover {
+    -fx-background-color: gray;
+    -fx-fill: red;
+    -icons-color: red;
+}
+.font-awesome-radio:selected {
+    -icons-color: green;
+    -fx-background-color: #888888;
+    -fx-border-radius: 2px;
+}
+
+.font-awesome-radio:armed {
+    -fx-background-color: green;
+}
+
+.new-glyph-icon{
+        -glyph-name: "STAR";
+        -icons-color: red;
+}
+
+.root{
+    -icons-color: black;
+}
+/*.font-awesome-radio > .radio  {
+   -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+   -fx-background-insets: 0 0 -1 0,  0,  1,  2;
+   -fx-background-radius: 1.0em; *//* large value to make sure this remains circular *//*
+   -fx-padding: 0.333333em; *//* 4 -- padding from outside edge to the inner black dot *//*
+}
+
+.font-awesome-radio:focused > .radio {
+    -fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-radius: 1.0em; *//* large value to make sure this remains circular *//*
+    -fx-background-insets: -1.4, 0, 1, 2;
+}
+
+.font-awesome-radio:hover > .radio {
+    -fx-color: -fx-hover-base;
+}
+.font-awesome-radio:armed > .radio {
+    -fx-color: -fx-pressed-base;
+}
+
+.font-awesome-radio > .radio > .dot {
+   -fx-background-color: transparent;
+   -fx-background-insets: 0;
+   -fx-background-radius: 1.0em; *//* large value to make sure this remains circular *//*
+   -fx-padding: 0.25em; *//* 3 -- radius of the inner black dot when selected *//*
+}
+
+.font-awesome-radio:selected > .radio > .dot {
+   -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
+   -fx-background-insets: 0 0 -1 0, 0;
+}*/
+
+.font-awesome-radio:disabled {
+    -fx-opacity: -fx-disabled-opacity;
+}
+
+.font-awesome-radio:show-mnemonics > .mnemonic-underline {
+    -fx-stroke: -fx-text-fill;
+} 

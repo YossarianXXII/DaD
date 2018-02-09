@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="fontawesomefx-iconPack">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/resources/lib/fontawesomefx-materialdesignfont-1.7.22-4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/lib/fontawesomefx-fontawesome-4.7.0-9.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/lib/fontawesomefx-icons525-3.0.0-4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/lib/fontawesomefx-materialicons-2.2.0-5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/lib/fontawesomefx-emojione-3.1.1-9.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/lib/fontawesomefx-materialstackicons-2.1-5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/lib/fontawesomefx-octicons-4.3.0-5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/lib/fontawesomefx-weathericons-2.0.10-5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -34,20 +34,20 @@ public class MapItem extends Pane{
 
     MapItem(double x, double y, Pane pane) {
         this.setLayoutX(x-32);  this.setLayoutY(y-32);
-        Canvas c = new Canvas();
+        canvas = new Canvas();
         pane.getChildren().add(this); 
-        this.getChildren().add(c);
-        
-        c.setOnMousePressed((MouseEvent e) -> {
+        this.getChildren().add(canvas);
+
+        canvas.setOnMousePressed((MouseEvent e) -> {
             if (((RadioButton)GlobalState.selectedTool).getId().equals("deleteItemRadio")) {
                 pane.getChildren().remove(MapItem.this);
             } else if(((RadioButton)GlobalState.selectedTool).getId().equals("selectItemRadio")){
                 if(!isSelected){
-                    c.setStyle("-fx-effect: innershadow(gaussian, #039ed3, 10, 1.0, 0, 0);");
+                    canvas.setStyle("-fx-effect: innershadow(gaussian, #039ed3, 10, 1.0, 0, 0);");
                     isSelected=true;
                 }else
                 {
-                    c.setStyle("");
+                    canvas.setStyle("");
                     isSelected=false;
                 }
                 
@@ -58,14 +58,14 @@ public class MapItem extends Pane{
 //                    
 //                    c.setLayoutY(m.getScreenY()-c.getScene().getWindow().getY());
 //                });
-        c.setHeight(64);
-        c.setWidth(64);
+        canvas.setHeight(64);
+        canvas.setWidth(64);
         
 //        c.setLayoutX(x-32);
 //        c.setLayoutY(y-32);
-        GraphicsContext gc = c.getGraphicsContext2D();
+        GraphicsContext gc = canvas.getGraphicsContext2D();
         System.out.println(x + "x" + y);
-        File f = new File("01.png");
+        File f = new File("castle01.png");
         image = new Image("file:"+f.getName());
         
         gc.drawImage(image, 0, 0, 64, 64);

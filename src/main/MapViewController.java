@@ -1,6 +1,10 @@
 package main;
 
 
+import de.jensd.fx.glyphs.emojione.utils.EmojiOneFactory;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import de.jensd.fx.glyphs.fontawesome.utils.FontAwesomeIconFactory;
 import map.MapItemFactory;
 import java.awt.Dimension;
 import javafx.event.ActionEvent;
@@ -20,6 +24,29 @@ public class MapViewController {
     @FXML
     public void initialize(){
         GlobalState.selectedTool = itemRadio.getSelectedToggle();
+
+
+
+
+//        newItemRadio.getStyleClass().remove("radio-button");
+//        moveItemRadio.getStyleClass().remove("radio-button");
+//        deleteItemRadio.getStyleClass().remove("radio-button");
+//        selectItemRadio.getStyleClass().remove("radio-button");
+
+        newItemRadio.getStyleClass().setAll("font-awesome-radio");
+        moveItemRadio.getStyleClass().setAll("font-awesome-radio");
+        deleteItemRadio.getStyleClass().setAll("font-awesome-radio");
+        selectItemRadio.getStyleClass().setAll("font-awesome-radio");
+
+        FontAwesomeIconView newIcon = new FontAwesomeIconView(FontAwesomeIcon.STAR);
+
+        newIcon.getStyleClass().setAll("new-glyph-icon");
+
+        newItemRadio.setGraphic(newIcon);
+        moveItemRadio.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.MAGNET));
+        deleteItemRadio.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.ERASER));
+        selectItemRadio.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.CROSSHAIRS));
+
     }
     
     
