@@ -1,53 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MapViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MapViewController">
    <top>
-      <VBox BorderPane.alignment="CENTER">
-         <children>
-            <MenuBar fx:id="borderPane">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#onAction" text="Save" />
-                    <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#onAction" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem fx:id="aboutButton" mnemonicParsing="false" onAction="#onAction" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
-               <items>        
-                  <RadioButton fx:id="newItemRadio" mnemonicParsing="false" onAction="#onRadioButton" selected="true">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="itemRadio" />
-                     </toggleGroup></RadioButton>
-                  <RadioButton fx:id="moveItemRadio" mnemonicParsing="false" onAction="#onRadioButton" toggleGroup="$itemRadio" />
-                  <RadioButton fx:id="deleteItemRadio" mnemonicParsing="false" onAction="#onRadioButton" toggleGroup="$itemRadio" />
-                  <RadioButton fx:id="selectItemRadio" mnemonicParsing="false" onAction="#onRadioButton" toggleGroup="$itemRadio" />
-                  
-               </items>
-            </ToolBar>
-         </children>
-      </VBox>
+       <VBox BorderPane.alignment="CENTER">
+           <MenuBar>
+               <Menu mnemonicParsing="false" text="File">
+                   <items>
+                       <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#onAction" text="Save" />
+                       <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#onAction" text="Close" />
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Help">
+                   <items>
+                       <MenuItem fx:id="aboutButton" mnemonicParsing="false" onAction="#onAction" text="About" />
+                   </items>
+               </Menu>
+           </MenuBar>
+           <ToolBar fx:id="controlsToolbar" prefHeight="40.0" prefWidth="200.0" />
+       </VBox>
    </top>
    <center>
-      <Pane fx:id="mainPane" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" onScroll="#onScroll" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="workAreaAnchor" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
