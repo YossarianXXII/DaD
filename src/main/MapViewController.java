@@ -32,18 +32,38 @@ public class MapViewController {
         GUIUtil.anchorAll(mainPane);
 
         itemRadio = new ToggleGroup();
-        newItemRadio = new AwesomeRadio(new FontAwesomeIconView(FontAwesomeIcon.STAR));
-        moveItemRadio = new AwesomeRadio(new FontAwesomeIconView(FontAwesomeIcon.ARROWS_ALT));
-        deleteItemRadio = new AwesomeRadio(new FontAwesomeIconView(FontAwesomeIcon.ERASER));
-        selectItemRadio = new AwesomeRadio(new FontAwesomeIconView(FontAwesomeIcon.CROSSHAIRS));
+
+        newItemRadio = new AwesomeRadio("New Item", new FontAwesomeIconView(FontAwesomeIcon.STAR));
+        newItemRadio.setOnAction(this::onRadioButton);
+
+        moveItemRadio = new AwesomeRadio("Move", new FontAwesomeIconView(FontAwesomeIcon.ARROWS_ALT));
+        moveItemRadio.setOnAction(this::onRadioButton);
+
+        deleteItemRadio = new AwesomeRadio("Delete", new FontAwesomeIconView(FontAwesomeIcon.ERASER));
+        deleteItemRadio.setOnAction(this::onRadioButton);
+
+        selectItemRadio = new AwesomeRadio("Select", new FontAwesomeIconView(FontAwesomeIcon.CROSSHAIRS));
+        selectItemRadio.setOnAction(this::onRadioButton);
+
+
 
         newItemRadio.setToggleGroup(itemRadio);
+        newItemRadio.setSelected(true);
         moveItemRadio.setToggleGroup(itemRadio);
         deleteItemRadio.setToggleGroup(itemRadio);
         selectItemRadio.setToggleGroup(itemRadio);
 
+        itemRadio.getToggles().setAll(
+          newItemRadio,
+          moveItemRadio,
+          deleteItemRadio,
+          selectItemRadio
+        );
+
+
         System.out.println(itemRadio.getToggles().toString());
         itemRadio.getToggles();
+
 
         controlsToolbar.getItems().addAll(
                 newItemRadio,
@@ -53,6 +73,7 @@ public class MapViewController {
         );
 
         GlobalState.selectedTool = itemRadio.getSelectedToggle();
+        System.out.println(GlobalState.selectedTool);
         mainPane.setOnMousePressed(this::onMousePressed);
 
 
@@ -87,7 +108,7 @@ public class MapViewController {
 
     }
 
-    @FXML
+
     void onRadioButton(ActionEvent event) {
 //        System.out.println("Event");
 //        System.out.println(  ((RadioButton)(event.getSource())).getId() );
@@ -112,11 +133,11 @@ public class MapViewController {
     private MenuItem closeButton;
     @FXML
     private MenuItem aboutButton;
-    private AwesomeRadio newItemRadio;
-    private AwesomeRadio moveItemRadio;
-    private AwesomeRadio deleteItemRadio;
-    private AwesomeRadio selectItemRadio;
-    @FXML
+    private RadioButton newItemRadio;
+    private RadioButton moveItemRadio;
+    private RadioButton deleteItemRadio;
+    private RadioButton selectItemRadio;
+
     private ToggleGroup itemRadio;
     @FXML
     private AnchorPane workAreaAnchor;
