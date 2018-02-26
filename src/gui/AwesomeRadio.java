@@ -9,20 +9,15 @@ import java.beans.EventHandler;
 
 public class AwesomeRadio extends RadioButton {
 
-    private final String action;
+
 
     public AwesomeRadio(String action, GlyphIcon icon){
         super();
-//        this.getStyleClass().setAll("font-awesome-radio");
-//        this.setGraphic(icon);
-        this.action = action;
+        this.getStyleClass().setAll("font-awesome-radio");
+        this.setGraphic(icon);
+        setId(action);
 
     }
 
-    @Override
-    public String toString() {
-        return "AwesomeRadio{" +
-                "action='" + action + '\'' +
-                '}';
-    }
+
 }

@@ -39,9 +39,9 @@ public class MapItem extends Pane{
         this.getChildren().add(canvas);
 
         canvas.setOnMousePressed((MouseEvent e) -> {
-            if (((RadioButton)GlobalState.selectedTool).getId().equals("deleteItemRadio")) {
+            if (((RadioButton)GlobalState.selectedTool).getId().equals("Delete")) {
                 pane.getChildren().remove(MapItem.this);
-            } else if(((RadioButton)GlobalState.selectedTool).getId().equals("selectItemRadio")){
+            } else if(((RadioButton)GlobalState.selectedTool).getId().equals("Select")){
                 if(!isSelected){
                     canvas.setStyle("-fx-effect: innershadow(gaussian, #039ed3, 10, 1.0, 0, 0);");
                     isSelected=true;
@@ -53,22 +53,23 @@ public class MapItem extends Pane{
                 
             }
         });
-//        c.setOnMouseDragged((MouseEvent m)->{
-////            System.out.println(  ((Canvas)(m.getSource()))   );
-//                    
-//                    c.setLayoutY(m.getScreenY()-c.getScene().getWindow().getY());
-//                });
-        canvas.setHeight(64);
-        canvas.setWidth(64);
+        canvas.setOnMouseDragged((MouseEvent m)->{
+//            System.out.println(  ((Canvas)(m.getSource()))   );
+
+                    canvas.setLayoutY(m.getScreenY()-canvas.getScene().getWindow().getY());
+                });
+        canvas.setHeight(32);
+        canvas.setWidth(32);
         
 //        c.setLayoutX(x-32);
 //        c.setLayoutY(y-32);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        System.out.println(x + "x" + y);
-        File f = new File("castle01.png");
-        image = new Image("file:"+f.getName());
+
+        File f = new File("MapObjects/Castle.png");
+        System.out.println(f.getAbsolutePath());
+        image = new Image("file:"+f.getAbsolutePath());
         
-        gc.drawImage(image, 0, 0, 64, 64);
+        gc.drawImage(image, 0, 0, 32, 32);
 
         
         
