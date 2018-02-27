@@ -4,26 +4,29 @@ package main;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import gui.AwesomeRadio;
-import gui.MapPane;
 import gui.GUIUtil;
-import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import map.MapItemFactory;
-
-import java.awt.Dimension;
-
+import gui.MapObjectPicker;
+import gui.MapPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
+import map.MapItemFactory;
+
+import java.awt.*;
+import java.io.IOException;
 
 public class MapViewController {
 
     static final Dimension TextureSize = new Dimension(64, 64);
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
 
 
         mainPane = new MapPane();
@@ -48,7 +51,7 @@ public class MapViewController {
 
 
         newItemRadio.setToggleGroup(itemRadio);
-        newItemRadio.setSelected(true);
+
         moveItemRadio.setToggleGroup(itemRadio);
         deleteItemRadio.setToggleGroup(itemRadio);
         selectItemRadio.setToggleGroup(itemRadio);
@@ -60,23 +63,21 @@ public class MapViewController {
           selectItemRadio
         );
 
-
-        System.out.println(itemRadio.getToggles().toString());
-        itemRadio.getToggles();
-
-
         controlsToolbar.getItems().addAll(
                 newItemRadio,
                 moveItemRadio,
                 deleteItemRadio,
                 selectItemRadio
         );
-
+        newItemRadio.setSelected(true);
         GlobalState.selectedTool = itemRadio.getSelectedToggle();
         System.out.println(GlobalState.selectedTool);
         mainPane.setOnMousePressed(this::onMousePressed);
 
+        MapObjectPicker picker = new MapObjectPicker();
+        picker.initialize();
 
+        mainPane.getChildren().add(picker);
     }
 
 
