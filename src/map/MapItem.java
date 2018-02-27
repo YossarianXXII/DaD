@@ -54,8 +54,6 @@ public class MapItem extends Pane{
             }
         });
         canvas.setOnMouseDragged((MouseEvent m)->{
-//            System.out.println(  ((Canvas)(m.getSource()))   );
-
                     canvas.setLayoutY(m.getScreenY()-canvas.getScene().getWindow().getY());
                 });
         canvas.setHeight(32);
@@ -66,9 +64,7 @@ public class MapItem extends Pane{
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         File f = new File("MapObjects/Castle.png");
-        System.out.println(f.getAbsolutePath());
         image = new Image("file:"+f.getAbsolutePath());
-        
         gc.drawImage(image, 0, 0, 32, 32);
 
         
