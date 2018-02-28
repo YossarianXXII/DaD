@@ -3,23 +3,20 @@ package main;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import gui.AwesomeRadio;
+import gui.AwesomeToggle;
 import gui.GUIUtil;
 import gui.MapObjectPicker;
 import gui.MapPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import map.MapItemFactory;
 
 import java.awt.*;
-import java.io.IOException;
 
 public class MapViewController {
 
@@ -36,16 +33,16 @@ public class MapViewController {
 
         itemRadio = new ToggleGroup();
 
-        newItemRadio = new AwesomeRadio("New Item", new FontAwesomeIconView(FontAwesomeIcon.STAR));
+        newItemRadio = new AwesomeToggle("New Item", new FontAwesomeIconView(FontAwesomeIcon.STAR));
         newItemRadio.setOnAction(this::onRadioButton);
 
-        moveItemRadio = new AwesomeRadio("Move", new FontAwesomeIconView(FontAwesomeIcon.ARROWS_ALT));
+        moveItemRadio = new AwesomeToggle("Move", new FontAwesomeIconView(FontAwesomeIcon.ARROWS_ALT));
         moveItemRadio.setOnAction(this::onRadioButton);
 
-        deleteItemRadio = new AwesomeRadio("Delete", new FontAwesomeIconView(FontAwesomeIcon.ERASER));
+        deleteItemRadio = new AwesomeToggle("Delete", new FontAwesomeIconView(FontAwesomeIcon.ERASER));
         deleteItemRadio.setOnAction(this::onRadioButton);
 
-        selectItemRadio = new AwesomeRadio("Select", new FontAwesomeIconView(FontAwesomeIcon.CROSSHAIRS));
+        selectItemRadio = new AwesomeToggle("Select", new FontAwesomeIconView(FontAwesomeIcon.CROSSHAIRS));
         selectItemRadio.setOnAction(this::onRadioButton);
 
 
@@ -118,10 +115,10 @@ public class MapViewController {
     private MenuItem closeButton;
     @FXML
     private MenuItem aboutButton;
-    private RadioButton newItemRadio;
-    private RadioButton moveItemRadio;
-    private RadioButton deleteItemRadio;
-    private RadioButton selectItemRadio;
+    private ToggleButton newItemRadio;
+    private ToggleButton moveItemRadio;
+    private ToggleButton deleteItemRadio;
+    private ToggleButton selectItemRadio;
 
     private ToggleGroup itemRadio;
     @FXML

@@ -8,6 +8,7 @@ package map;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -38,7 +39,7 @@ public class MapItem extends Pane{
         this.getChildren().add(canvas);
 
         this.setOnMousePressed((MouseEvent e) -> {
-            switch (((RadioButton) GlobalState.selectedTool).getId()) {
+            switch ( ((ToggleButton)GlobalState.selectedTool).getId()) {
                 case "Delete":
                     pane.getChildren().remove(MapItem.this);
                     e.consume();
