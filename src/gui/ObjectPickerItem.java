@@ -6,21 +6,22 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class ObjectPickerItem extends ToggleButton{
-    private static final double OBJECT_PICKER_HEIGHT = 32;
-    private static final double OBJECT_PICKER_WIDTH = 32;
+    private static final double OBJECT_PICKER_HEIGHT = 64;
+    private static final double OBJECT_PICKER_WIDTH = 64;
 
-    Canvas canvas = new Canvas();
-    ObjectPickerItem(){
-
-    }
+    private Image image;
 
 
     public void initialize(Image image){
-
+        this.image = image;
         ImageView imageView = new ImageView();
-        imageView.setFitHeight(32);
-        imageView.setFitWidth(32);
+        imageView.setFitHeight(OBJECT_PICKER_HEIGHT);
+        imageView.setFitWidth(OBJECT_PICKER_WIDTH);
         imageView.setImage(image);
         this.setGraphic(imageView);
+    }
+
+    public Image getImage(){
+        return image;
     }
 }

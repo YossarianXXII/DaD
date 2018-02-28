@@ -11,13 +11,15 @@ public class MapObjectPicker extends HBox{
 
     public MapObjectPicker() {
         this.setOnScroll(event -> {
-            final int i = toggleGroup.getToggles().indexOf(toggleGroup.getSelectedToggle());
-            if(event.getTextDeltaY()>0) {
-                toggleGroup.selectToggle(toggleGroup.getToggles().get(  (i+1)%toggleGroup.getToggles().size()  ));
+            int current = toggleGroup.getToggles().indexOf(toggleGroup.getSelectedToggle());
+            int next;
+            if(event.getTextDeltaY()<0) {
+                next = (current + 1) % toggleGroup.getToggles().size();
             }
             else{
-                toggleGroup.selectToggle(toggleGroup.getToggles().get(  Math.abs(i-1+toggleGroup.getToggles().size())%toggleGroup.getToggles().size()  ));
+                next = Math.abs(current - 1 + toggleGroup.getToggles().size()) % toggleGroup.getToggles().size();
             }
+            toggleGroup.selectToggle(toggleGroup.getToggles().get(next));
         });
     }
 
@@ -37,6 +39,10 @@ public class MapObjectPicker extends HBox{
         }
     }
 
+
+    public Image getSelected(){
+        return ((ObjectPickerItem)this.toggleGroup.getSelectedToggle()).getImage();
+    }
 
 
 

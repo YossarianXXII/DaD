@@ -26,7 +26,7 @@ public class MapViewController {
     static final Dimension TextureSize = new Dimension(64, 64);
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() {
 
 
         mainPane = new MapPane();
@@ -74,7 +74,7 @@ public class MapViewController {
         System.out.println(GlobalState.selectedTool);
         mainPane.setOnMousePressed(this::onMousePressed);
 
-        MapObjectPicker picker = new MapObjectPicker();
+        picker = new MapObjectPicker();
         picker.initialize();
 
         mainPane.getChildren().add(picker);
@@ -88,20 +88,9 @@ public class MapViewController {
 
 
     void onMousePressed(MouseEvent event) {
-        System.out.println(GlobalState.selectedTool);
-        System.out.println(event.getSource());
         if (GlobalState.selectedTool.equals(newItemRadio)) {
-            MapItemFactory.getNew(event.getX(), event.getY(), mainPane);
-
+            MapItemFactory.getNew(event.getX(), event.getY(), mainPane, picker.getSelected());
         }
-        if (moveItemRadio.isSelected()) {
-            // select Item and move it
-        }
-        if (deleteItemRadio.isSelected()) {
-            // delete Item under cursor
-        }
-
-
     }
 
     @FXML
@@ -110,15 +99,9 @@ public class MapViewController {
     }
 
 
-    void onRadioButton(ActionEvent event) {
-//        System.out.println("Event");
-//        System.out.println(  ((RadioButton)(event.getSource())).getId() );
+    private void onRadioButton(ActionEvent event) {
         System.out.println(itemRadio.getSelectedToggle().toString());
         GlobalState.selectedTool = itemRadio.getSelectedToggle();
-//        System.out.println(selectedToggle.getId());
-//        RadioButton name = (RadioButton)event.getSource();
-//        System.out.println(name.getId());
-
     }
 
     @FXML
@@ -127,6 +110,7 @@ public class MapViewController {
     }
 
     private MapPane mainPane;
+    private MapObjectPicker picker;
 
     @FXML
     private MenuItem saveButton;

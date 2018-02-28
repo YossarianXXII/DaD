@@ -5,13 +5,13 @@
  */
 package map;
 
-import java.io.File;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import main.DrawingState;
 import main.GlobalState;
 
 /**
@@ -21,51 +21,53 @@ import main.GlobalState;
  * 
  */
 public class MapItem extends Pane{
-    Canvas canvas;
-    Image image;
-//    double x;
-//    double y;
-    
+    private Canvas canvas;
+
     int type;
     boolean isSelected;
     MapItem() {
         
     }
 
-    MapItem(double x, double y, Pane pane) {
-        this.setLayoutX(x-32);  this.setLayoutY(y-32);
+    MapItem(double x, double y, Pane pane, Image im) {
+        // Sets the new item to be centered on where mouse click occured
+        this.setLayoutX(x-DrawingState.getScale()/2);
+        this.setLayoutY(y-DrawingState.getScale()/2);
         canvas = new Canvas();
         pane.getChildren().add(this); 
         this.getChildren().add(canvas);
 
-        canvas.setOnMousePressed((MouseEvent e) -> {
-            if (((RadioButton)GlobalState.selectedTool).getId().equals("Delete")) {
-                pane.getChildren().remove(MapItem.this);
-            } else if(((RadioButton)GlobalState.selectedTool).getId().equals("Select")){
-                if(!isSelected){
-                    canvas.setStyle("-fx-effect: innershadow(gaussian, #039ed3, 10, 1.0, 0, 0);");
-                    isSelected=true;
-                }else
-                {
-                    canvas.setStyle("");
-                    isSelected=false;
-                }
-                
+        this.setOnMousePressed((MouseEvent e) -> {
+            switch (((RadioButton) GlobalState.selectedTool).getId()) {
+                case "Delete":
+                    pane.getChildren().remove(MapItem.this);
+                    e.consume();
+
+                    break;
+                case "Select":
+                    if (!isSelected) {
+                        canvas.setStyle("-fx-effect: innershadow(gaussian, #039ed3, 10, 1.0, 0, 0);");
+                        isSelected = true;
+                    } else {
+                        canvas.setStyle("");
+                        isSelected = false;
+                    }
+
+                    break;
+                case "Move":
+                    this.setOnMouseDragged(m -> {
+                        this.setLayoutY(m.getScreenY() - this.getScene().getWindow().getY());
+                    });
+                    break;
             }
         });
-        canvas.setOnMouseDragged((MouseEvent m)->{
-                    canvas.setLayoutY(m.getScreenY()-canvas.getScene().getWindow().getY());
-                });
-        canvas.setHeight(32);
-        canvas.setWidth(32);
-        
-//        c.setLayoutX(x-32);
-//        c.setLayoutY(y-32);
+        this.setOnMouseReleased((MouseEvent event) -> this.setOnMouseDragged(null));
+
+        canvas.setHeight(64);
+        canvas.setWidth(64);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        File f = new File("MapObjects/Castle.png");
-        image = new Image("file:"+f.getAbsolutePath());
-        gc.drawImage(image, 0, 0, 32, 32);
+        gc.drawImage(im, 0, 0, DrawingState.getScale(), DrawingState.getScale());
 
         
         

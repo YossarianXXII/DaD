@@ -5,6 +5,7 @@
  */
 package map;
 
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 /**
@@ -17,8 +18,8 @@ public class MapItemFactory {
         return new MapItem();
     }
 
-    public static MapItem getNew(double x, double y, Pane p) {
-        return new MapItem(x,y,p);
+    public static MapItem getNew(double x, double y, Pane p, Image im) {
+        return new MapItem(x,y,p,im);
     }
     
 }
